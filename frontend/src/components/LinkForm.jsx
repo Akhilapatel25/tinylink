@@ -1,28 +1,6 @@
 /*import { useState } from 'react';
 
-function LinkForm({ onLinkCreated }) {
-  const [longUrl, setLongUrl] = useState('');
-  const [code, setCode] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess('');
-
-    if (!longUrl || !code) {
-      setError('Both fields are required.');
-      return;
-    }
-
-    try {
-      const res = await fetch('http://localhost:5000/api/links', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ longUrl, code }),
-      });
-
+func
       const data = await res.json();
 
       if (!res.ok) {
@@ -281,11 +259,12 @@ export default function LinkForm({ onLinkCreated }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/links", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ longUrl, code }),
-      });
+      const res = await fetch("https://tinylink-backend-tdu6.onrender.com/api/links", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ longUrl, code }),
+});
+
       const data = await res.json();
       if (res.ok) {
         setMessage(`Link created: ${data.code}`);
