@@ -180,7 +180,7 @@ function Stats({ code }) {
     if (!code) return;
     const fetchLink = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/links/${code}`);
+        const res = await fetch(`https://tinylink-backend-tdu6.onrender.com/api/links/${code}`);
         const data = await res.json();
         setLink(data);
       } catch (err) {
