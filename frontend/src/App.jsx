@@ -99,9 +99,13 @@ function App() {
   const [links, setLinks] = useState([]);
 
   const fetchLinks = async () => {
-    const res = await fetch("http://localhost:5000/api/links");
-    const data = await res.json();
-    setLinks(data);
+    try {
+      const res = await fetch("https://tinylink-backend-tdu6.onrender.com/api/links");
+      const data = await res.json();
+      setLinks(data);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
@@ -109,11 +113,12 @@ function App() {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-900 min-h-screen">
       <h1 className="text-4xl font-bold mb-6 text-white">TinyLink</h1>
 
       <LinkForm onLinkCreated={fetchLinks} />
-      <Dashboard links={links} />
+
+      <Dashboard links={links} onDelete={fetchLinks} />
 
       {links.map((link) => (
         <Stats key={link.code} code={link.code} />
